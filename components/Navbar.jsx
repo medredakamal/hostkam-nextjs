@@ -86,13 +86,10 @@ const Navbar = () => {
             <select
               className="select select-bordered border-green-400 w-full max-w-xs"
               onChange={(e) => handleLanguageChange(e.target.value)}
+              defaultValue={currentLang}
             >
               {languages.map((lang) => (
-                <option
-                  key={lang[1]}
-                  value={lang[1]}
-                  selected={currentLang === lang[1]}
-                >
+                <option key={lang[1]} value={lang[1]}>
                   {lang[0]}
                 </option>
               ))}
