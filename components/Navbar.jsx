@@ -74,6 +74,13 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
+          <div className="hidden md:block">
+            <select className="select select-bordered border-green-400 w-full max-w-xs">
+              <option selected>English</option>
+              <option>French</option>
+              <option>عربي</option>
+            </select>
+          </div>
         </div>
       </nav>
     </>
