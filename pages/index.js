@@ -1,6 +1,9 @@
 import Image from "next/image";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+function Home() {
+  const { t } = useTranslation("common");
 
-export default function Home() {
   return (
     <>
       {/* Intro */}
@@ -13,7 +16,7 @@ export default function Home() {
       >
         <div className="container mx-auto">
           <div className="middle-text w-full px-4 py-5 md:w-[40vw] md:ml-auto md:p-0">
-            <h1 className="font-medium mb-3">{"Why choose HostKam?"}</h1>
+            <h1 className="font-medium mb-3">{t("intro_title")}</h1>
             {`Because we know that even the most powerful technology needs the
             best specialists. This is why we provide permanent specialized
             telephone technical support, among other things.`}
@@ -230,3 +233,14 @@ export default function Home() {
     </>
   );
 }
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+      // Will be passed to the page component as props
+    },
+  };
+}
+
+export default Home;

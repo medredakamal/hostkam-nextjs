@@ -3,7 +3,15 @@ import { useRouter } from "next/router";
 import Logo from "./Logo";
 const Navbar = () => {
   let router = useRouter();
-
+  let languages = [
+    ["English", "en"],
+    ["French", "fr"],
+    ["Arabic", "ar"],
+  ];
+  let currentLang = router.locale;
+  const handleLanguageChange = (data) => {
+    router.replace(router.pathname, router.pathname, { locale: data });
+  };
   return (
     <>
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
@@ -75,10 +83,19 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="hidden md:block">
-            <select className="select select-bordered border-green-400 w-full max-w-xs">
-              <option selected>English</option>
-              <option>French</option>
-              <option>عربي</option>
+            <select
+              className="select select-bordered border-green-400 w-full max-w-xs"
+              onChange={(e) => handleLanguageChange(e.target.value)}
+            >
+              {languages.map((lang) => (
+                <option
+                  key={lang[1]}
+                  value={lang[1]}
+                  selected={currentLang === lang[1]}
+                >
+                  {lang[0]}
+                </option>
+              ))}
             </select>
           </div>
         </div>
